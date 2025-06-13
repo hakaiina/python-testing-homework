@@ -1,0 +1,55 @@
+#2 вариант
+
+import unittest
+
+def calculate_average(numbers): #основная функция
+    if not numbers:
+        return None
+    return round(sum(numbers) / len(numbers))
+
+
+def main():
+   user_input = input("Введите числа через пробел: ").strip()
+   if not user_input:
+       print(None)
+       return
+
+   try:
+       numbers = list(map(float, user_input.split()))
+       print(calculate_average(numbers))
+   except ValueError:
+       print("Ошибка. Введите только числа.")
+
+if __name__ == "__main__":
+    main()
+
+#tests
+class AverageNumbersTestCase(unittest.TestCase):
+    def test_average_normal_list(self):
+            self.assertEqual(calculate_average([1, 2, 3, 4, 5]), 3)
+
+    def test_average_single_number(self):
+            self.assertEqual(calculate_average([10]), 10)
+
+    def test_average_empty_list(self):
+            self.assertIsNone(calculate_average([]))
+
+    def test_average_with_floats(self):
+            self.assertEqual(calculate_average([1.5, 2.5, 3.5]), 2)
+
+    def test_average_with_negatives(self):
+            self.assertEqual(calculate_average([-1, -2, -3]), -2)
+
+    def test_average_rounding_up(self):
+            self.assertEqual(calculate_average([1, 2]), 2)
+
+    def test_average_rounding_down(self):
+            self.assertEqual(calculate_average([1, 1, 2]), 1)
+
+
+if __name__ == "__main__":
+    # Вывод информации о тестировщике
+    tester_name = "Polina Starostina"
+    print(f"\nTested by {tester_name}")
+
+
