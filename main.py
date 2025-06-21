@@ -1,7 +1,5 @@
 #2 вариант
 
-import unittest
-
 def calculate_average(numbers): #основная функция
     if not numbers:
         return None
